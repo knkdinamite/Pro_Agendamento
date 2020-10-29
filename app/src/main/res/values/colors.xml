@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#90989E</color>
+    <color name="colorDark">#404345</color>
+    <color name="color1">#090909</color>
+    <color name="buttons">#1F1F20</color>
+    <color name="btSuccess">#8FB58F</color>
+    <color name="btInfo">#5bc0de</color>
+    <color name="btWarning">#f0ad4e</color>
+    <color name="btDanger">#d9534f</color>
+    <color name="white">#ffffff</color>
+</resources>
