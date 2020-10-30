@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import com.orm.SugarRecord;
+import com.projeto.activities.usuario.UsuarioDetalheActivity;
 import com.projeto.models.Agendamento;
 import com.projeto.adapters.UsuariosAdapter;
 import com.projeto.api.retrofit.RetrofitConfig;
@@ -20,13 +21,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Agendamento {
+public class Agendamento extends SugarRecord {
 
-    private Context context;
+    private transient Context context;
     private String nome_agendamento;
     private String data;
     private String horainicio;
     private String horafinal;
+
 
     public String getNome_agendamento() {
         return nome_agendamento;
@@ -41,6 +43,13 @@ public class Agendamento {
 
     }
 
+    public Agendamento(Context context, String nome_agendamento, String data, String horainicio, String horafinal) {
+        this.context = context;
+        this.nome_agendamento = nome_agendamento;
+        this.data = data;
+        this.horainicio = horainicio;
+        this.horafinal = horafinal;
+    }
 
     public String getData() {
         return data;
@@ -72,9 +81,9 @@ public class Agendamento {
 
     }
 
-    public void deletarAgendamento() {
+    public void deletarAgendamento(String key) {
         // deletar do seu painel os horarios marcados da su tela.
-        Call<Agendamento> call = new RetrofitConfig(this.context).setAgendService().deletarAgend("Token " + this.getKey(), this.getId());
+        Call<Agendamento> call = new RetrofitConfig(this.context).setAgendService().deletarAgend( "Token "+ key,this.getId());
         call.enqueue(new Callback<Agendamento>() {
 
             @Override
@@ -82,26 +91,55 @@ public class Agendamento {
                 if (response.isSuccessful()) {
                     confirmarAgendDeletado();
 
-                    } else {
-                        deletaragendBanco();
-                        Aplicacao.irParaListarLoginActivity(context);
-                    }
-
                 } else {
-                    confirmarUsuarioNaoDeletado();
+                    deletaragendBanco();
+                    Aplicacao.irParaAgendamentoActivity(context);
+
+            }
+
+            }
+
+            @Override
+            public void onFailure(Call<Agendamento> call, Throwable t) {
+                Log.d("Excluiu","nao foi excluido");
+            }
+        });
+    }
+
+
+    public void editarAgendamento(String key)  {
+        Call<Agendamento> call = new RetrofitConfig(context).setAgendService().editarAgend("Token "+ key ,this.getId(),this);
+        call.enqueue(new Callback<Agendamento>() {
+
+            @Override
+            public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        Aplicacao.irParaListarUsuariosActivity(context);
+                    }
+                }else {
+                    confirmarAgendNaoEditado(context);
                 }
 
             }
-        });
 
+            @Override
+            public void onFailure(@NonNull Call<Agendamento> call, @NonNull Throwable t) {
+                Log.e("retrofit", "Erro ao enviar o usuario:" + t.getMessage());
+
+            }
+        });
     }
 
 
-    public void salvar() {
+    public void adicionarAgendamento() {
         //Salvar em sua paginas seus horarios em tela.
 
 
+
     }
+
+
 
     public static void listarAgendRemoto(@NotNull Usuario usuario) {
         Call<List<Agendamento>> call = new RetrofitConfig(usuario.getContext()).setAgendService().listarAgendAdmin("Token " + usuario.getKey());
@@ -137,8 +175,16 @@ public class Agendamento {
         this.context = context;
     }
     private void confirmarAgendDeletado() {
-        Toast.makeText(this.context, "Usuário Deletado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, "Agendamento Deletado", Toast.LENGTH_SHORT).show();
     }
+    public void deletaragendBanco(){
+        this.delete();
+    }
+    private static void confirmarAgendNaoEditado(Context context) {
+        ((UsuarioDetalheActivity)context).esconderProgressBar();
 
+        Toast.makeText(context, "Erro ao editar usuário", Toast.LENGTH_SHORT).show();
+
+    }
 
 }
