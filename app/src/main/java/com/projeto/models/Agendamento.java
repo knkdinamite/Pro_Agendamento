@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.orm.SugarRecord;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
+import com.projeto.adapters.AgendAdapter;
 import com.projeto.models.Agendamento;
 import com.projeto.adapters.UsuariosAdapter;
 import com.projeto.api.retrofit.RetrofitConfig;
@@ -141,17 +142,17 @@ public class Agendamento extends SugarRecord {
 
 
 
-    public static void listarAgendRemoto(@NotNull Usuario usuario) {
+    public static void listarAgendRemoto(@NotNull Usuario usuario, ListView agend_lista_listview) {
         Call<List<Agendamento>> call = new RetrofitConfig(usuario.getContext()).setAgendService().listarAgendAdmin("Token " + usuario.getKey());
         call.enqueue(new Callback<List<Agendamento>>() {
             @Override
             public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
                 if (response.isSuccessful()) {
-                    List<Agendamento> usuarios = response.body();
+                    List<Agendamento> agendamentos = response.body();
                     Log.d("listarAgend", "listar");
 
-                    // UsuariosAdapter adaptador = new UsuariosAdapter(usuario.getContext(), usuarios);
-                    // agend_lista_listview.setAdapter(adaptador);
+                    AgendAdapter adaptador = new AgendAdapter(usuario.getContext(), agendamentos);
+                     agend_lista_listview.setAdapter(adaptador);
                 }
             }
 

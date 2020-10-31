@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.projeto.R;
-import com.projeto.models.Agendamento;
 import com.projeto.models.Aplicacao;
 import com.projeto.models.Usuario;
 

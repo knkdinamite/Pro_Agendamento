@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".activities.Agendamento.AgendamentoActivity"></activity>
+        <activity android:name=".activities.Agendamento.MeusActivity"></activity>
+        <activity android:name=".activities.Agendamento.AgendamentoActivity" />
 
         <meta-data
             android:name="DATABASE"
