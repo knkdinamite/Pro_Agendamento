@@ -72,13 +72,13 @@ public class AgendAdapter extends BaseAdapter {
             });
 
 
-         ///   holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
-        //        @Override
-         //       public void onClick(View v) {
+           holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
+              @Override
+                public void onClick(View v) {
 
-           //         Aplicacao.irParaUsuarioDetalheActivity(usuario.getContext(),usuario.getId());
-          //      }
-          //  });
+                //  Aplicacao.irParaUsuarioDetalheActivity(usuario.getContext(),usuario.getId());
+                }
+           });
 
 
             v.setTag(holder);

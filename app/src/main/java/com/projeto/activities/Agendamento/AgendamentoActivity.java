@@ -6,21 +6,24 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.projeto.R;
+import com.projeto.adapters.UsuariosAdapter;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Usuario;
 import com.projeto.adapters.AgendAdapter;
 
 public class AgendamentoActivity extends AppCompatActivity {
     ListView agend_lista_listview;
+    private AgendAdapter adaptador = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agend_lista);
+        agend_lista_listview = (ListView) findViewById(R.id.agend_lista_listview);
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
-        if (usuario != null) {
-            usuario.setContext(AgendamentoActivity.this);
-            agend_lista_listview.findViewById(R.id.agend_lista_listview);
+            if (usuario != null) {
+                usuario.setContext(AgendamentoActivity.this);
+
             Agendamento.listarAgendRemoto(usuario,agend_lista_listview);
         }
         //Agendamento agendamento = new Agendamento(AgendamentoActivity.this,"tst","22/02/2022","10:00:00","13:00:00");
