@@ -56,10 +56,14 @@ public class AgendAdapter extends BaseAdapter {
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = mInflater.inflate(R.layout.agend_item_lista, null);
             holder = new AgendAdapter.ListContent();
+            holder.agend_item_view = (View) v.findViewById(R.id.agend_item_view);
             holder.agend_lista_textview_nome = (TextView) v.findViewById(R.id.agend_lista_textview_nome);
             holder.agend_item_delete = (ImageView) v.findViewById(R.id.agend_item_delete);
             holder.agend_item_lista_progressBar = (ProgressBar) v.findViewById(R.id.agend_item_lista_progressBar);
             holder.agend_item_lista_progressBar.setVisibility(View.GONE);
+            holder.agend_lista_textview_data = (TextView) v.findViewById(R.id.agend_lista_textview_data);
+            holder.agend_lista_textview_horainicio = (TextView) v.findViewById(R.id.agend_lista_textview_horainicio);
+            holder.agend_lista_textview_horafinal = (TextView) v.findViewById(R.id.agend_lista_textview_horafinal);
 
             holder.agend_item_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,16 +71,22 @@ public class AgendAdapter extends BaseAdapter {
                     holder.agend_item_lista_progressBar.setVisibility(View.VISIBLE);
                     holder.agend_item_delete.setVisibility(View.GONE);
 
-                    //agendamento.deletarUsuario();
+                   // agendamento.deletaragendBanco();
                 }
             });
 
 
            holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
               @Override
-                public void onClick(View v) {
+               public void onClick(View v) {
 
-                //  Aplicacao.irParaUsuarioDetalheActivity(usuario.getContext(),usuario.getId());
+                Aplicacao.irParaMeusActivity(context,agendamento.getId());
+                  if (usuarioLogado != null) {
+                      usuarioLogado.setKey(usuarioLogado.getKey());
+                  }
+
+
+                  // Aplicacao.irParaUsuarioDetalheActivity(usuario.getContext(),usuario.getId());
                 }
            });
 
@@ -88,15 +98,19 @@ public class AgendAdapter extends BaseAdapter {
 
 
         holder.agend_lista_textview_nome.setText(agendamento.getNome_agendamento());
+        holder.agend_lista_textview_data.setText(agendamento.getData());
+        holder.agend_lista_textview_horainicio.setText(agendamento.getHorainicio());
+        holder.agend_lista_textview_horafinal.setText(agendamento.getHorafinal());
 
         return v;
     }
 
     public static class ListContent {
-        TextView agend_lista_textview_nome;
+        TextView agend_lista_textview_nome,agend_lista_textview_horafinal,agend_lista_textview_data,agend_lista_textview_horainicio;
         View agend_item_view;
         ImageView agend_item_delete;
         ProgressBar agend_item_lista_progressBar;
+
     }
 }
 

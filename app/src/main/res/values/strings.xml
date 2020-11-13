@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Projeto_Agendamento</string>
+    <string name="app_name">Studio Agendamento</string>
     <string name="verifica_internet">Verifique a internet</string>
     <string name="logoff">Logoff</string>
     <string name="deletar_conta">Deletar Conta</string>
     <string name="usuarios">Usuarios</string>
+    <string name="meus">Meus Agendamentos</string>
+    <string name="sair">Voltar</string>
 </resources>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.projeto.activities.Agendamento.AgendamentoActivity;
+import com.projeto.activities.Agendamento.MeusActivity;
 import com.projeto.activities.AppActivity;
 import com.projeto.activities.autenticacao.LoginActivity;
 import com.projeto.activities.autenticacao.RegisterActivity;
@@ -14,6 +15,7 @@ import com.projeto.activities.usuario.UsuarioDetalheActivity;
 
 
 public class Aplicacao {
+
 
     private Context context;
     private Class<?> activityDestino;
@@ -31,6 +33,7 @@ public class Aplicacao {
         Intent intent = new Intent(context, ListarUsuariosActivity.class);
         context.startActivity(intent);
     }
+
 
     public static void irParaListarLoginActivity(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -76,5 +79,19 @@ public class Aplicacao {
            // homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
            // context.startActivity(homeIntent);
         //}
+    }
+
+
+    public static void irParaMeusActivity(Context context, Long id) {
+        Intent intent = new Intent(context, MeusActivity.class);
+        Bundle b = new Bundle();
+        b.putLong("id", id);
+        intent.putExtras(b);
+        context.startActivity(intent);
+    }
+
+    public static void irParaMeusAgends(Context context) {
+        Intent intent = new Intent(context, MeusActivity.class);
+        context.startActivity(intent);
     }
 }

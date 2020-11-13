@@ -14,6 +14,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 import static com.projeto.statics.ConstantesGlobais.AGENDAMENTOS;
+import static com.projeto.statics.ConstantesGlobais.MEUS_AGENDAMENTOS;
 
 public interface AgendService {
 
@@ -24,4 +25,7 @@ public interface AgendService {
     Call<Agendamento> deletarAgend(@Header("Authorization") String key, @Path("id") Long id);
     @GET(AGENDAMENTOS)
     Call<List<Agendamento>> listarAgendAdmin(@Header("Authorization") String s);
+
+    @GET(MEUS_AGENDAMENTOS)
+    Call<List<Agendamento>>listarAgendporUser(@Header("Authorization")String u);
 }

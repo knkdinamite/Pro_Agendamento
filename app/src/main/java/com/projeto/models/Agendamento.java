@@ -44,6 +44,10 @@ public class Agendamento extends SugarRecord {
 
     }
 
+
+
+
+
     public Agendamento(Context context, String nome_agendamento, String data, String horainicio, String horafinal) {
         this.context = context;
         this.nome_agendamento = nome_agendamento;
@@ -165,7 +169,7 @@ public class Agendamento extends SugarRecord {
 
     }
 
-//Caso venha a faltar algo, vc me diz que  eu arrumo a classe.
+
 
 
     public Context getContext() {
@@ -185,6 +189,30 @@ public class Agendamento extends SugarRecord {
         ((UsuarioDetalheActivity)context).esconderProgressBar();
 
         Toast.makeText(context, "Erro ao editar usuário", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    public static void listarAgenduser(@NotNull Usuario usuario, ListView agend_lista_user) {
+        Call<List<Agendamento>> call = new RetrofitConfig(usuario.getContext()).setAgendService().listarAgendporUser("Token " + usuario.getKey());
+        call.enqueue(new Callback<List<Agendamento>>() {
+            @Override
+            public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
+                if (response.isSuccessful()) {
+                    List<Agendamento> agendamentos = response.body();
+                    Log.d("listarAgenduser", "listar");
+
+                    AgendAdapter adaptador = new AgendAdapter(usuario.getContext(), agendamentos);
+                    agend_lista_user.setAdapter(adaptador);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Agendamento>> call, Throwable t) {
+                Log.d("listarAgend", "listar");
+
+            }
+        });
 
     }
 

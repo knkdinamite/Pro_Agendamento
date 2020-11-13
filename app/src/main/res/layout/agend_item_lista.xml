@@ -8,7 +8,7 @@
     <View
         android:id="@+id/agend_item_view"
         android:layout_width="0dp"
-        android:layout_height="60sp"
+        android:layout_height="104dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
@@ -19,6 +19,17 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/agend_lista_textview_horafinal"
+        android:layout_width="74dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:hint="_________"
+        app:layout_constraintStart_toEndOf="@+id/agend_lista_textview_horainicio"
+        app:layout_constraintTop_toTopOf="@+id/agend_lista_textview_horainicio"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/agend_lista_textview_nome"
@@ -55,4 +66,26 @@
         android:layout_marginRight="5dp"
         app:layout_constraintEnd_toEndOf="@+id/agend_item_view"
         app:layout_constraintTop_toTopOf="@+id/agend_item_view" />
+
+    <TextView
+        android:id="@+id/agend_lista_textview_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="40dp"
+        android:hint="___________"
+        app:layout_constraintStart_toStartOf="@+id/agend_item_view"
+        app:layout_constraintTop_toTopOf="@+id/agend_item_view" />
+
+    <TextView
+        android:id="@+id/agend_lista_textview_horainicio"
+        android:layout_width="74dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="____________"
+        app:layout_constraintStart_toStartOf="@+id/agend_item_view"
+        app:layout_constraintTop_toBottomOf="@+id/agend_lista_textview_data" />
 </androidx.constraintlayout.widget.ConstraintLayout>
