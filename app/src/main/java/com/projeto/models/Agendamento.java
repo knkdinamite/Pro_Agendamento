@@ -1,7 +1,9 @@
 package com.projeto.models;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,6 +24,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.projeto.statics.ConstantesGlobais.ADICIONAR;
+
 public class Agendamento extends SugarRecord {
 
     private transient Context context;
@@ -29,7 +33,37 @@ public class Agendamento extends SugarRecord {
     private String data;
     private String horainicio;
     private String horafinal;
+    private Object usuario;
 
+
+
+    public Agendamento() {
+
+    }
+
+    public Agendamento(Context context, Object usuario){
+        this.context = context;
+        this.usuario = usuario;
+    }
+
+
+
+    public Agendamento(Context context, String nome_agendamento, String data, String horainicio, String horafinal,Object usuario) {
+        this.context = context;
+        this.nome_agendamento = nome_agendamento;
+        this.data = data;
+        this.horainicio = horainicio;
+        this.horafinal = horafinal;
+        this.usuario = usuario;
+    }
+
+    public Object getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Object usuario) {
+        this.usuario = usuario;
+    }
 
     public String getNome_agendamento() {
         return nome_agendamento;
@@ -39,22 +73,6 @@ public class Agendamento extends SugarRecord {
         this.nome_agendamento = nome_agendamento;
     }
 
-
-    public Agendamento() {
-
-    }
-
-
-
-
-
-    public Agendamento(Context context, String nome_agendamento, String data, String horainicio, String horafinal) {
-        this.context = context;
-        this.nome_agendamento = nome_agendamento;
-        this.data = data;
-        this.horainicio = horainicio;
-        this.horafinal = horafinal;
-    }
 
     public String getData() {
         return data;
@@ -88,7 +106,7 @@ public class Agendamento extends SugarRecord {
 
     public void deletarAgendamento(String key) {
         // deletar do seu painel os horarios marcados da su tela.
-        Call<Agendamento> call = new RetrofitConfig(this.context).setAgendService().deletarAgend( "Token "+ key,this.getId());
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().deletarAgend( "Token "+ key,this.getId());
         call.enqueue(new Callback<Agendamento>() {
 
             @Override
@@ -112,15 +130,25 @@ public class Agendamento extends SugarRecord {
     }
 
 
+
+    public void adicionarUsuario(Object usuario){
+        Agendamento agendamento = new Agendamento();
+        if(usuario != null) {
+            agendamento.setUsuario(getUsuario());
+        }
+    }
+
     public void editarAgendamento(String key)  {
-        Call<Agendamento> call = new RetrofitConfig(context).setAgendService().editarAgend("Token "+ key ,this.getId(),this);
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token ",this.getId(),this);
         call.enqueue(new Callback<Agendamento>() {
 
             @Override
             public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        Aplicacao.irParaListarUsuariosActivity(context);
+                        Agendamento agendamento =
+                                new Agendamento(getContext(),getNome_agendamento(),getData(),getHorainicio(),getHorafinal(),getUsuario());
+                        adicionarUsuario(usuario);
                     }
                 }else {
                     confirmarAgendNaoEditado(context);
@@ -147,7 +175,7 @@ public class Agendamento extends SugarRecord {
 
 
     public static void listarAgendRemoto(@NotNull Usuario usuario, ListView agend_lista_listview) {
-        Call<List<Agendamento>> call = new RetrofitConfig(usuario.getContext()).setAgendService().listarAgendAdmin("Token " + usuario.getKey());
+        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendAdmin("Token " + usuario.getKey());
         call.enqueue(new Callback<List<Agendamento>>() {
             @Override
             public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
@@ -194,7 +222,7 @@ public class Agendamento extends SugarRecord {
 
 
     public static void listarAgenduser(@NotNull Usuario usuario, ListView agend_lista_user) {
-        Call<List<Agendamento>> call = new RetrofitConfig(usuario.getContext()).setAgendService().listarAgendporUser("Token " + usuario.getKey());
+        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendporUser("Token " + usuario.getKey());
         call.enqueue(new Callback<List<Agendamento>>() {
             @Override
             public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {

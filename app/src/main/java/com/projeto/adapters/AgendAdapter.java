@@ -1,4 +1,5 @@
 package com.projeto.adapters;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -71,24 +72,19 @@ public class AgendAdapter extends BaseAdapter {
                     holder.agend_item_lista_progressBar.setVisibility(View.VISIBLE);
                     holder.agend_item_delete.setVisibility(View.GONE);
 
-                   // agendamento.deletaragendBanco();
+                    // agendamento.deletaragendBanco();
                 }
             });
 
 
-           holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
-              @Override
-               public void onClick(View v) {
-
-                Aplicacao.irParaMeusActivity(context,agendamento.getId());
-                  if (usuarioLogado != null) {
-                      usuarioLogado.setKey(usuarioLogado.getKey());
-                  }
+            holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Aplicacao.AlertarpraAdicionar(context);
 
 
-                  // Aplicacao.irParaUsuarioDetalheActivity(usuario.getContext(),usuario.getId());
                 }
-           });
+            });
 
 
             v.setTag(holder);
@@ -106,7 +102,7 @@ public class AgendAdapter extends BaseAdapter {
     }
 
     public static class ListContent {
-        TextView agend_lista_textview_nome,agend_lista_textview_horafinal,agend_lista_textview_data,agend_lista_textview_horainicio;
+        TextView agend_lista_textview_nome, agend_lista_textview_horafinal, agend_lista_textview_data, agend_lista_textview_horainicio;
         View agend_item_view;
         ImageView agend_item_delete;
         ProgressBar agend_item_lista_progressBar;

@@ -1,6 +1,8 @@
 package com.projeto.models;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +14,8 @@ import com.projeto.activities.autenticacao.RegisterActivity;
 import com.projeto.activities.tarefa.TarefaActivity;
 import com.projeto.activities.usuario.ListarUsuariosActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
+
+import static com.projeto.statics.ConstantesGlobais.ADICIONAR;
 
 
 public class Aplicacao {
@@ -93,5 +97,39 @@ public class Aplicacao {
     public static void irParaMeusAgends(Context context) {
         Intent intent = new Intent(context, MeusActivity.class);
         context.startActivity(intent);
+    }
+    public static void AlertarpraAdicionar(Context context){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setMessage(ADICIONAR);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Agendamento agendamento = new Agendamento();
+                        Usuario usuario = Usuario.verificaUsuarioLogado();
+                        agendamento.editarAgendamento(usuario.getKey());
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    public static void aguardar(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

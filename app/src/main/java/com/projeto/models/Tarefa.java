@@ -26,7 +26,7 @@ public class Tarefa extends SugarRecord {
     }
 
     public void receberListaDeTarefas(String key){
-        Call<List<Tarefa>> call = new RetrofitConfig(this.getContext()).setTarefaService().listarTarefas("Token "+ key);
+        Call<List<Tarefa>> call = new RetrofitConfig().setTarefaService().listarTarefas("Token "+ key);
         call.enqueue(new Callback<List<Tarefa>>() {
             @Override
             public void onResponse(Call<List<Tarefa>> call, Response<List<Tarefa>> response) {

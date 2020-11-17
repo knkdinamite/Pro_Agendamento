@@ -18,6 +18,7 @@ import com.projeto.activities.Agendamento.MeusActivity;
 public class AgendamentoActivity extends AppCompatActivity {
     ListView agend_lista_listview;
     private AgendAdapter adaptador = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +26,11 @@ public class AgendamentoActivity extends AppCompatActivity {
         agend_lista_listview = (ListView) findViewById(R.id.agend_lista_listview);
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
-            if (usuario != null) {
-                usuario.setContext(AgendamentoActivity.this);
+        if (usuario != null) {
+            usuario.setContext(AgendamentoActivity.this);
 
 
-            Agendamento.listarAgendRemoto(usuario,agend_lista_listview);
-
+            Agendamento.listarAgendRemoto(usuario, agend_lista_listview);
 
 
         }
@@ -44,6 +44,7 @@ public class AgendamentoActivity extends AppCompatActivity {
         //agendamento.setId(3L);
         //agendamento.deletarAgendamento(usuario.getKey());
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_agend, menu);
@@ -68,9 +69,10 @@ public class AgendamentoActivity extends AppCompatActivity {
     }
 
 
-    private void meus_agend(){
+    private void meus_agend() {
         Aplicacao.irParaMeusAgends(AgendamentoActivity.this);
     }
+
     private void voltar() {
 
         Aplicacao.irParaAppActivity(AgendamentoActivity.this);

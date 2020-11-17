@@ -2,6 +2,7 @@ package com.projeto.activities.Agendamento;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,10 +18,21 @@ import com.projeto.models.Usuario;
 public class MeusActivity extends AppCompatActivity {
     ListView agend_lista_user;
     private AgendAdapter adaptador = null;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meus_agendamentos);
+
+        Bundle b = getIntent().getExtras();
+        long idAgendameto = -1; // or other values
+        if(b != null) {
+            idAgendameto = b.getLong("id");
+        }
+        Log.d("activity","Valor do id recebido: "+ idAgendameto);
+        Agendamento agendamento = Agendamento.findById(Agendamento.class,idAgendameto);
 
         agend_lista_user = (ListView) findViewById(R.id.agend_lista_user);
 
@@ -34,7 +46,9 @@ public class MeusActivity extends AppCompatActivity {
 
 
 
+
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_agend2, menu);

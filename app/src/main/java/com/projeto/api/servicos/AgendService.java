@@ -28,4 +28,7 @@ public interface AgendService {
 
     @GET(MEUS_AGENDAMENTOS)
     Call<List<Agendamento>>listarAgendporUser(@Header("Authorization")String u);
+
+    @PUT(AGENDAMENTOS + "{id}/")
+    Call<Usuario> adicionarUsuario(@Header("Authorization") String key, @Path("id") Long id, @Body Usuario usuario);
 }
