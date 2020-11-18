@@ -2,6 +2,7 @@ package com.projeto.models;
 
 
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import com.orm.SugarRecord;
+import com.projeto.activities.Agendamento.MeusActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
 import com.projeto.adapters.AgendAdapter;
 import com.projeto.models.Agendamento;
@@ -36,6 +38,8 @@ public class Agendamento extends SugarRecord {
     private Object usuario;
 
 
+//public Agendamento(List<MeusAgendamentos> meusAgendamentos){}
+
 
     public Agendamento() {
 
@@ -48,9 +52,9 @@ public class Agendamento extends SugarRecord {
 
 
 
-    public Agendamento(Context context, String nome_agendamento, String data, String horainicio, String horafinal,Object usuario) {
+    public Agendamento(Context context, String nome, String data, String horainicio, String horafinal,Object usuario) {
         this.context = context;
-        this.nome_agendamento = nome_agendamento;
+        this.nome_agendamento = nome;
         this.data = data;
         this.horainicio = horainicio;
         this.horafinal = horafinal;
@@ -138,7 +142,7 @@ public class Agendamento extends SugarRecord {
         }
     }
 
-    public void editarAgendamento(String key)  {
+    public void editarAgendamento(String key,Context context)  {
         Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token ",this.getId(),this);
         call.enqueue(new Callback<Agendamento>() {
 
@@ -146,9 +150,7 @@ public class Agendamento extends SugarRecord {
             public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        Agendamento agendamento =
-                                new Agendamento(getContext(),getNome_agendamento(),getData(),getHorainicio(),getHorafinal(),getUsuario());
-                        adicionarUsuario(usuario);
+                       adicionarUsuario(usuario);
                     }
                 }else {
                     confirmarAgendNaoEditado(context);
@@ -175,7 +177,7 @@ public class Agendamento extends SugarRecord {
 
 
     public static void listarAgendRemoto(@NotNull Usuario usuario, ListView agend_lista_listview) {
-        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendAdmin("Token " + usuario.getKey());
+        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendRemoto("Token " + usuario.getKey());
         call.enqueue(new Callback<List<Agendamento>>() {
             @Override
             public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
@@ -221,27 +223,7 @@ public class Agendamento extends SugarRecord {
     }
 
 
-    public static void listarAgenduser(@NotNull Usuario usuario, ListView agend_lista_user) {
-        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendporUser("Token " + usuario.getKey());
-        call.enqueue(new Callback<List<Agendamento>>() {
-            @Override
-            public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
-                if (response.isSuccessful()) {
-                    List<Agendamento> agendamentos = response.body();
-                    Log.d("listarAgenduser", "listar");
 
-                    AgendAdapter adaptador = new AgendAdapter(usuario.getContext(), agendamentos);
-                    agend_lista_user.setAdapter(adaptador);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Agendamento>> call, Throwable t) {
-                Log.d("listarAgend", "listar");
-
-            }
-        });
 
     }
 
-}

@@ -8,6 +8,7 @@ public class ConstantesGlobais {
     public static final String AGENDAMENTOS ="agendamentos/";
     public static final String MEUS_AGENDAMENTOS = "meus-agendamentos/";
     public static final String ADICIONAR = "Deseja adicionar esse agendamento?";
+    public static final String REMOVER = "Deseja remover esse agendamento?";
 
 
 

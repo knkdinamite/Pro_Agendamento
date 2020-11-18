@@ -39,6 +39,10 @@ public class Usuario extends SugarRecord {
     private String key;
     private Long pk;
 
+    public Usuario(){
+
+    }
+
     //É OBRIGATÓRIO A CRIAÇÃO DE UM CONSTRUTOR VAZIO PARA SALVAR NO BANCO INTERNO
     public Usuario(String email, String senha) {
         this.email = email;
@@ -57,6 +61,7 @@ public class Usuario extends SugarRecord {
         this.email = email;
         this.context = context;
     }
+
 
     public void salvaUsuarioNoBanco() {
         this.save();

@@ -1,6 +1,7 @@
 package com.projeto.api.servicos;
 
 import com.projeto.models.Agendamento;
+import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
 import java.util.List;
@@ -24,10 +25,10 @@ public interface AgendService {
     @DELETE(AGENDAMENTOS +"{id}/")
     Call<Agendamento> deletarAgend(@Header("Authorization") String key, @Path("id") Long id);
     @GET(AGENDAMENTOS)
-    Call<List<Agendamento>> listarAgendAdmin(@Header("Authorization") String s);
+    Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String s);
 
     @GET(MEUS_AGENDAMENTOS)
-    Call<List<Agendamento>>listarAgendporUser(@Header("Authorization")String u);
+    Call<List<MeusAgendamentos>>listarAgendporUser(@Header("Authorization")String u);
 
     @PUT(AGENDAMENTOS + "{id}/")
     Call<Usuario> adicionarUsuario(@Header("Authorization") String key, @Path("id") Long id, @Body Usuario usuario);

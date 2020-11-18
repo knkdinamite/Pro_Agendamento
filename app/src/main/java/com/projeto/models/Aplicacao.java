@@ -16,6 +16,7 @@ import com.projeto.activities.usuario.ListarUsuariosActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
 
 import static com.projeto.statics.ConstantesGlobais.ADICIONAR;
+import static com.projeto.statics.ConstantesGlobais.REMOVER;
 
 
 public class Aplicacao {
@@ -131,5 +132,31 @@ public class Aplicacao {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void AlertarpraRemover(Context context) {AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setMessage(REMOVER);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Agendamento agendamento = new Agendamento();
+                        Usuario usuario = Usuario.verificaUsuarioLogado();
+                        agendamento.editarAgendamento(usuario.getKey());
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }
