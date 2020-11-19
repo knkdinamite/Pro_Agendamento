@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.projeto.R;
 import com.projeto.models.Agendamento;
-import com.projeto.models.MeusAgendamentos;
+import com.projeto.models.Agendamento;
 import com.projeto.models.Aplicacao;
 import com.projeto.models.Usuario;
 
@@ -21,17 +21,17 @@ import java.util.List;
 public class MeusAdapter extends BaseAdapter {
 
     Context context;
-    List<MeusAgendamentos> meusAgendamentos;
+    List<Agendamento> agendamentos;
     private LayoutInflater mInflater;
 
-    public MeusAdapter(Context context, List<MeusAgendamentos> meusAgendamentos) {
-        this.meusAgendamentos = meusAgendamentos;
+    public MeusAdapter(Context context, List<Agendamento> agendamento) {
+        this.agendamentos = agendamento;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return meusAgendamentos.size();
+        return agendamentos.size();
     }
 
     @Override
@@ -47,8 +47,8 @@ public class MeusAdapter extends BaseAdapter {
     @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final MeusAgendamentos meus = meusAgendamentos.get(position);
-        meus.setContext(context);
+        final Agendamento agendamento = agendamentos.get(position);
+        agendamento.setContext(context);
         Usuario usuarioLogado = Usuario.verificaUsuarioLogado();
 
 
@@ -93,7 +93,7 @@ public class MeusAdapter extends BaseAdapter {
         }
 
 
-        Agendamento agendamento = Agendamento.findById(Agendamento.class,meus.getAgendamento());
+        Agendamento agendamento = Agendamento.findById(Agendamento.class,agendamento.getAgendamento());
 
         holder.meus_lista_textview_nome.setText(agendamento.getNome_agendamento());
         holder.meus_lista_textview_data.setText(agendamento.getData());

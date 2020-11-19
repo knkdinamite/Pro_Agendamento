@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -25,11 +26,15 @@ public interface AgendService {
     @DELETE(AGENDAMENTOS +"{id}/")
     Call<Agendamento> deletarAgend(@Header("Authorization") String key, @Path("id") Long id);
     @GET(AGENDAMENTOS)
-    Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String s);
+    Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String key);
 
     @GET(MEUS_AGENDAMENTOS)
-    Call<List<MeusAgendamentos>>listarAgendporUser(@Header("Authorization")String u);
+    Call<List<MeusAgendamentos>>listarAgendporUser(@Header("Authorization")String key);
 
-    @PUT(AGENDAMENTOS + "{id}/")
-    Call<Usuario> adicionarUsuario(@Header("Authorization") String key, @Path("id") Long id, @Body Usuario usuario);
+    @POST(MEUS_AGENDAMENTOS)
+    Call<MeusAgendamentos>addAgend(@Header("Authorization")String key);
+
+
+
+
 }

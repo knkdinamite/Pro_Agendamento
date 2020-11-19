@@ -1,21 +1,17 @@
 package com.projeto.models;
 
 
-import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import com.orm.SugarRecord;
-import com.projeto.activities.Agendamento.MeusActivity;
+import com.projeto.activities.Agendamento.AgendamentoActivity;
+import com.projeto.activities.autenticacao.RegisterActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
 import com.projeto.adapters.AgendAdapter;
-import com.projeto.models.Agendamento;
-import com.projeto.adapters.UsuariosAdapter;
 import com.projeto.api.retrofit.RetrofitConfig;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,8 +22,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.projeto.statics.ConstantesGlobais.ADICIONAR;
-
 public class Agendamento extends SugarRecord {
 
     private transient Context context;
@@ -35,7 +29,7 @@ public class Agendamento extends SugarRecord {
     private String data;
     private String horainicio;
     private String horafinal;
-    private Object usuario;
+    private Long usuario;
 
 
 //public Agendamento(List<MeusAgendamentos> meusAgendamentos){}
@@ -45,14 +39,14 @@ public class Agendamento extends SugarRecord {
 
     }
 
-    public Agendamento(Context context, Object usuario){
+    public Agendamento(Context context, Long usuario){
         this.context = context;
         this.usuario = usuario;
     }
 
 
 
-    public Agendamento(Context context, String nome, String data, String horainicio, String horafinal,Object usuario) {
+    public Agendamento(Context context, String nome, String data, String horainicio, String horafinal,Long usuario) {
         this.context = context;
         this.nome_agendamento = nome;
         this.data = data;
@@ -61,11 +55,11 @@ public class Agendamento extends SugarRecord {
         this.usuario = usuario;
     }
 
-    public Object getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Object usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 
@@ -135,22 +129,20 @@ public class Agendamento extends SugarRecord {
 
 
 
-    public void adicionarUsuario(Object usuario){
-        Agendamento agendamento = new Agendamento();
-        if(usuario != null) {
-            agendamento.setUsuario(getUsuario());
-        }
-    }
-
-    public void editarAgendamento(String key,Context context)  {
-        Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token ",this.getId(),this);
+    public void editarAgendamento(String key, Context context)  {
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token "+key,this.getId(),this);
         call.enqueue(new Callback<Agendamento>() {
 
             @Override
             public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                       adicionarUsuario(usuario);
+                       Agendamento agendamento = response.body();
+                       agendamento.save();
+                       ((AgendamentoActivity)context).inicializandoComponentes();
+
+
+
                     }
                 }else {
                     confirmarAgendNaoEditado(context);
@@ -165,6 +157,7 @@ public class Agendamento extends SugarRecord {
             }
         });
     }
+
 
 
     public void adicionarAgendamento() {
@@ -215,7 +208,7 @@ public class Agendamento extends SugarRecord {
     public void deletaragendBanco(){
         this.delete();
     }
-    private static void confirmarAgendNaoEditado(Context context) {
+    static void confirmarAgendNaoEditado(Context context) {
         ((UsuarioDetalheActivity)context).esconderProgressBar();
 
         Toast.makeText(context, "Erro ao editar usuário", Toast.LENGTH_SHORT).show();

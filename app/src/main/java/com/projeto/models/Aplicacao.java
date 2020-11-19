@@ -99,7 +99,7 @@ public class Aplicacao {
         Intent intent = new Intent(context, MeusActivity.class);
         context.startActivity(intent);
     }
-    public static void AlertarpraAdicionar(Context context){
+    public static void AlertarpraAdicionar(Context context, Agendamento agendamento){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setMessage(ADICIONAR);
         builder1.setCancelable(true);
@@ -108,9 +108,9 @@ public class Aplicacao {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Agendamento agendamento = new Agendamento();
                         Usuario usuario = Usuario.verificaUsuarioLogado();
-                        agendamento.editarAgendamento(usuario.getKey());
+                        agendamento.setUsuario(usuario.getId());
+                        agendamento.editarAgendamento(usuario.getKey(),context);
                     }
                 });
 
@@ -134,21 +134,22 @@ public class Aplicacao {
         }
     }
 
-    public static void AlertarpraRemover(Context context) {AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage(REMOVER);
-        builder1.setCancelable(true);
+    public static void AlertarpraRemover(Context context) {AlertDialog.Builder builder2 = new AlertDialog.Builder(context);
+        builder2.setMessage(REMOVER);
+        builder2.setCancelable(true);
 
-        builder1.setPositiveButton(
+        builder2.setPositiveButton(
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Agendamento agendamento = new Agendamento();
                         Usuario usuario = Usuario.verificaUsuarioLogado();
-                        agendamento.editarAgendamento(usuario.getKey());
+                        Agendamento agendamento =new  Agendamento();
+                        agendamento.setUsuario(null);
+
                     }
                 });
 
-        builder1.setNegativeButton(
+        builder2.setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -156,7 +157,7 @@ public class Aplicacao {
                     }
                 });
 
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        AlertDialog alert12 = builder2.create();
+        alert12.show();
     }
 }

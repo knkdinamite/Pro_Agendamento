@@ -15,6 +15,8 @@ import com.projeto.models.Aplicacao;
 import com.projeto.models.Usuario;
 import com.projeto.activities.Agendamento.MeusActivity;
 
+import java.util.List;
+
 public class AgendamentoActivity extends AppCompatActivity {
     ListView agend_lista_listview;
     private AgendAdapter adaptador = null;
@@ -23,17 +25,12 @@ public class AgendamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agend_lista);
-        agend_lista_listview = (ListView) findViewById(R.id.agend_lista_listview);
-
-        Usuario usuario = Usuario.verificaUsuarioLogado();
-        if (usuario != null) {
-            usuario.setContext(AgendamentoActivity.this);
 
 
-            Agendamento.listarAgendRemoto(usuario, agend_lista_listview);
+        inicializandoComponentes();
 
 
-        }
+        /*
         // EDITAR
         //Agendamento agendamento = new Agendamento(AgendamentoActivity.this,"tst","22/02/2022","10:00:00","13:00:00");
         //agendamento.setId(4L);
@@ -43,6 +40,27 @@ public class AgendamentoActivity extends AppCompatActivity {
         //Agendamento agendamento = new Agendamento(AgendamentoActivity.this,"cha","21/08/2021","12:00:00","14:00:00");
         //agendamento.setId(3L);
         //agendamento.deletarAgendamento(usuario.getKey());
+         */
+    }
+
+    public void inicializandoComponentes() {
+        agend_lista_listview = (ListView) findViewById(R.id.agend_lista_listview);
+
+        Usuario usuario = Usuario.verificaUsuarioLogado();
+        List<Agendamento> agendamentos = Agendamento.listAll(Agendamento.class);
+        listarAgendamentos(agendamentos);
+
+        if (usuario != null) {
+            usuario.setContext(AgendamentoActivity.this);
+            Agendamento.listarAgendRemoto(usuario, agend_lista_listview);
+        }
+
+    }
+
+    public void listarAgendamentos(List<Agendamento> agendamentos) {
+        //chama o adaptador
+        AgendAdapter adaptador = new AgendAdapter(AgendamentoActivity.this, agendamentos);
+        agend_lista_listview.setAdapter(adaptador);
     }
 
     @Override

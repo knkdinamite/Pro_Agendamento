@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.projeto.R;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Aplicacao;
+import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
 import java.util.List;
@@ -80,7 +81,21 @@ public class AgendAdapter extends BaseAdapter {
             holder.agend_item_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Aplicacao.AlertarpraAdicionar(context);
+                    Aplicacao.AlertarpraAdicionar(context,agendamento);
+
+
+                    /*
+                    MeusAgendamentos meusAgendamentos = new MeusAgendamentos();
+
+                    meusAgendamentos.setAgendamento(agendamento.getId());
+                    meusAgendamentos.setUsuario(usuarioLogado.getId());
+
+
+                    MeusAgendamentos.adicionarAgend(usuarioLogado.getKey(),context);
+
+                     */
+
+
 
 
                 }
