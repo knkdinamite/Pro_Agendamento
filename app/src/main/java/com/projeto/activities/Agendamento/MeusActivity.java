@@ -27,23 +27,22 @@ public class MeusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meus_agendamentos);
 
-        inicializandoComponentes();
-
-
-
-
-    }
-
-    public void inicializandoComponentes() {
         agend_lista_user = (ListView) findViewById(R.id.agend_lista_user);
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
         if (usuario != null) {
             usuario.setContext(MeusActivity.this);
             MeusAgendamentos meusAgendamentos = new MeusAgendamentos(MeusActivity.this);
-            meusAgendamentos.listarAgenduser(usuario,agend_lista_user);
+            meusAgendamentos.listarAgenduser(usuario, agend_lista_user);
+
         }
+
+
+
+
     }
+
+
 
 
     @Override

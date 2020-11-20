@@ -45,28 +45,6 @@
         app:layout_constraintStart_toStartOf="@+id/agend_item_view"
         app:layout_constraintTop_toTopOf="@+id/agend_item_view" />
 
-    <ImageView
-        android:id="@+id/agend_item_delete"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/agend_item_view"
-        app:srcCompat="@drawable/ic_baseline_delete_24" />
-
-    <ProgressBar
-        android:id="@+id/agend_item_lista_progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/agend_item_view"
-        app:layout_constraintTop_toTopOf="@+id/agend_item_view" />
-
     <TextView
         android:id="@+id/agend_lista_textview_data"
         android:layout_width="wrap_content"

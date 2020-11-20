@@ -61,21 +61,10 @@ public class MeusAdapter extends BaseAdapter {
             holder = new MeusAdapter.ListContent();
             holder.meus_item_view = (View) v.findViewById(R.id.meus_item_view);
             holder.meus_lista_textview_nome = (TextView) v.findViewById(R.id.meus_lista_textview_nome);
-            holder.meus_item_delete = (ImageView) v.findViewById(R.id.meus_item_delete);
-            holder.meus_item_lista_progressBar = (ProgressBar) v.findViewById(R.id.meus_item_lista_progressBar);
-            holder.meus_item_lista_progressBar.setVisibility(View.GONE);
             holder.meus_lista_textview_data = (TextView) v.findViewById(R.id.meus_lista_textview_data);
             holder.meus_lista_textview_horainicio = (TextView) v.findViewById(R.id.meus_lista_textview_horainicio);
             holder.meus_lista_textview_horafinal = (TextView) v.findViewById(R.id.meus_lista_textview_horafinal);
 
-            holder.meus_item_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder.meus_item_lista_progressBar.setVisibility(View.VISIBLE);
-                    holder.meus_item_delete.setVisibility(View.GONE);
-
-                }
-            });
 
 
             holder.meus_item_view.setOnClickListener(new View.OnClickListener() {

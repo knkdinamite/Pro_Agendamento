@@ -145,10 +145,11 @@ public class Aplicacao {
                         Usuario usuario = Usuario.verificaUsuarioLogado();
 
                         agendamento.setUsuario(null);
-                        agendamento.editMeusAgendamento(usuario.getKey(),context);
+                        agendamento.editMeusAgendamento(usuario.getKey(), context);
 
                     }
-                }).setNegativeButton(
+                });
+        builder2.setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -159,4 +160,5 @@ public class Aplicacao {
         AlertDialog alert12 = builder2.create();
         alert12.show();
     }
+
 }

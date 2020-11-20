@@ -33,7 +33,6 @@ public class Agendamento extends SugarRecord {
     private String horafinal;
     private Long usuario;
 
-
 //public Agendamento(List<MeusAgendamentos> meusAgendamentos){}
 
 
@@ -169,7 +168,7 @@ public class Agendamento extends SugarRecord {
                     if (response.body() != null) {
                         Agendamento agendamentos = response.body();
                         agendamentos.save();
-                        ((MeusActivity)context).inicializandoComponentes();
+
 
 
 
@@ -246,7 +245,7 @@ public class Agendamento extends SugarRecord {
     }
 
 
-
-
+    public void setUsuario() {
     }
+}
 

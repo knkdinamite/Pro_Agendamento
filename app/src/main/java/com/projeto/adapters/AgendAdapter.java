@@ -60,22 +60,10 @@ public class AgendAdapter extends BaseAdapter {
             holder = new AgendAdapter.ListContent();
             holder.agend_item_view = (View) v.findViewById(R.id.agend_item_view);
             holder.agend_lista_textview_nome = (TextView) v.findViewById(R.id.agend_lista_textview_nome);
-            holder.agend_item_delete = (ImageView) v.findViewById(R.id.agend_item_delete);
-            holder.agend_item_lista_progressBar = (ProgressBar) v.findViewById(R.id.agend_item_lista_progressBar);
-            holder.agend_item_lista_progressBar.setVisibility(View.GONE);
             holder.agend_lista_textview_data = (TextView) v.findViewById(R.id.agend_lista_textview_data);
             holder.agend_lista_textview_horainicio = (TextView) v.findViewById(R.id.agend_lista_textview_horainicio);
             holder.agend_lista_textview_horafinal = (TextView) v.findViewById(R.id.agend_lista_textview_horafinal);
 
-            holder.agend_item_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder.agend_item_lista_progressBar.setVisibility(View.VISIBLE);
-                    holder.agend_item_delete.setVisibility(View.GONE);
-
-                    // agendamento.deletaragendBanco();
-                }
-            });
 
 
             holder.agend_item_view.setOnClickListener(new View.OnClickListener() {

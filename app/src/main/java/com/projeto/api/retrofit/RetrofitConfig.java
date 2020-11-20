@@ -2,6 +2,8 @@ package com.projeto.api.retrofit;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.projeto.api.servicos.AgendService;
 import com.projeto.api.servicos.EventoService;
 import com.projeto.api.servicos.TarefaService;
@@ -28,10 +30,14 @@ public class RetrofitConfig {
                     //.addInterceptor(new ConnectivityInterceptor(context))
                     .build();
 
+            Gson gson = new GsonBuilder()
+                    .serializeNulls()
+                    .create();
+
             this.retrofit = new Retrofit.Builder()
                     .baseUrl(ENDERECO_API)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
 
