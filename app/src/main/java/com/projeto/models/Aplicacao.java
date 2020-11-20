@@ -134,7 +134,7 @@ public class Aplicacao {
         }
     }
 
-    public static void AlertarpraRemover(Context context) {AlertDialog.Builder builder2 = new AlertDialog.Builder(context);
+    public static void AlertarpraRemover(Context context, Agendamento agendamento) {AlertDialog.Builder builder2 = new AlertDialog.Builder(context);
         builder2.setMessage(REMOVER);
         builder2.setCancelable(true);
 
@@ -143,13 +143,12 @@ public class Aplicacao {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Usuario usuario = Usuario.verificaUsuarioLogado();
-                        Agendamento agendamento =new  Agendamento();
+
                         agendamento.setUsuario(null);
+                        agendamento.editMeusAgendamento(usuario.getKey(),context);
 
                     }
-                });
-
-        builder2.setNegativeButton(
+                }).setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

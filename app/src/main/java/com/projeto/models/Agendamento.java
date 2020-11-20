@@ -9,9 +9,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.orm.SugarRecord;
 import com.projeto.activities.Agendamento.AgendamentoActivity;
+import com.projeto.activities.Agendamento.MeusActivity;
 import com.projeto.activities.autenticacao.RegisterActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
 import com.projeto.adapters.AgendAdapter;
+import com.projeto.adapters.MeusAdapter;
 import com.projeto.api.retrofit.RetrofitConfig;
 
 import org.jetbrains.annotations.NotNull;
@@ -140,6 +142,34 @@ public class Agendamento extends SugarRecord {
                        Agendamento agendamento = response.body();
                        agendamento.save();
                        ((AgendamentoActivity)context).inicializandoComponentes();
+
+
+
+                    }
+                }else {
+                    confirmarAgendNaoEditado(context);
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Agendamento> call, @NonNull Throwable t) {
+                Log.e("retrofit", "Erro ao enviar o usuario:" + t.getMessage());
+
+            }
+        });
+    }
+
+    public void editMeusAgendamento(String key,Context context){
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().deletarUserAgend("Token "+key,this.getId(),this);
+        call.enqueue(new Callback<Agendamento>() {
+            @Override
+            public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        Agendamento agendamentos = response.body();
+                        agendamentos.save();
+                        ((MeusActivity)context).inicializandoComponentes();
 
 
 

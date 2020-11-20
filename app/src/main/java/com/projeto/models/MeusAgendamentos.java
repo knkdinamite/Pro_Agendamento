@@ -24,11 +24,11 @@ import static com.projeto.models.Agendamento.confirmarAgendNaoEditado;
 
 public class MeusAgendamentos extends SugarRecord {
 
-    private long agendamento;
+
     private long usuario;
     private Context context;
 
-    public MeusAgendamentos(){
+    public MeusAgendamentos(Class<MeusAgendamentos> meusAgendamentosClass, long agendamento){
 
     }
 
@@ -36,19 +36,12 @@ public class MeusAgendamentos extends SugarRecord {
         this.context = context;
     }
 
-    public long getAgendamento() {
-        return agendamento;
-    }
-
-    public void setAgendamento(long agendamento) {
-        this.agendamento = agendamento;
-    }
 
     public long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(long usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 
@@ -60,78 +53,30 @@ public class MeusAgendamentos extends SugarRecord {
         this.context = context;
     }
 
-    public void editMeusAgendamento(String key,Context context){
-        Call<MeusAgendamentos> call = new RetrofitConfig().setAgendService().addAgend("Token "+key);
-        call.enqueue(new Callback<MeusAgendamentos>() {
-                @Override
-                public void onResponse(@NonNull Call<MeusAgendamentos> call, @NonNull Response<MeusAgendamentos> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body() != null) {
-                            MeusAgendamentos agendamento = response.body();
-                             agendamento.save();
-                             ((MeusActivity)context).inicializandoComponentes();
 
-
-
-                        }
-                    }else {
-                        confirmarAgendNaoEditado(context);
-                    }
-
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<MeusAgendamentos> call, @NonNull Throwable t) {
-                    Log.e("retrofit", "Erro ao enviar o usuario:" + t.getMessage());
-
-                }
-            });
-}
     public static void listarAgenduser(@NotNull Usuario usuario, ListView agend_lista_user) {
-        Call<List<MeusAgendamentos>> call = new RetrofitConfig().setAgendService().listarAgendporUser("Token " + usuario.getKey());
-        call.enqueue(new Callback<List<MeusAgendamentos>>() {
+        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendporUser("Token " + usuario.getKey());
+        call.enqueue(new Callback<List<Agendamento>>() {
             @Override
-            public void onResponse(Call<List<MeusAgendamentos>> call, Response<List<MeusAgendamentos>> response) {
+            public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
                 if (response.isSuccessful()) {
-                    List<MeusAgendamentos> meusAgendamentos = response.body();
+                    List<Agendamento> agendamentos = response.body();
                     Log.d("listarAgenduser", "listar");
 
-                    MeusAdapter adaptador = new MeusAdapter(usuario.getContext(), meusAgendamentos);
+                    MeusAdapter adaptador = new MeusAdapter(usuario.getContext(),agendamentos);
                     agend_lista_user.setAdapter(adaptador);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<MeusAgendamentos>> call, Throwable t) {
+            public void onFailure(Call<List<Agendamento>> call, Throwable t) {
                 Log.d("listarAgend", "listar");
 
             }
         });
     }
 
-    public  static void adicionarAgend( String key,Context context){
-        Call<MeusAgendamentos> call = new RetrofitConfig().setAgendService().addAgend("Token "+key);
-        call.enqueue(new Callback<MeusAgendamentos>() {
 
-            @Override
-            public void onResponse(@NonNull Call<MeusAgendamentos> call, @NonNull Response<MeusAgendamentos> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-
-                    }
-                }else {
-                     confirmarAgendNaoEditado(context);
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<MeusAgendamentos> call, @NonNull Throwable t) {
-                Log.e("retrofit", "Erro ao enviar o usuario:" + t.getMessage());
-
-            }
-        });
-    }
     }
 
 

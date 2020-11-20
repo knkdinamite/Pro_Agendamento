@@ -84,17 +84,6 @@ public class AgendAdapter extends BaseAdapter {
                     Aplicacao.AlertarpraAdicionar(context,agendamento);
 
 
-                    /*
-                    MeusAgendamentos meusAgendamentos = new MeusAgendamentos();
-
-                    meusAgendamentos.setAgendamento(agendamento.getId());
-                    meusAgendamentos.setUsuario(usuarioLogado.getId());
-
-
-                    MeusAgendamentos.adicionarAgend(usuarioLogado.getKey(),context);
-
-                     */
-
 
 
 

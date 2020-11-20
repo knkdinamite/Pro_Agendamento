@@ -26,13 +26,13 @@ public interface AgendService {
     @DELETE(AGENDAMENTOS +"{id}/")
     Call<Agendamento> deletarAgend(@Header("Authorization") String key, @Path("id") Long id);
     @GET(AGENDAMENTOS)
-    Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String key);
+    Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String s);
 
     @GET(MEUS_AGENDAMENTOS)
-    Call<List<MeusAgendamentos>>listarAgendporUser(@Header("Authorization")String key);
+    Call<List<Agendamento>>listarAgendporUser(@Header("Authorization")String u);
 
-    @POST(MEUS_AGENDAMENTOS)
-    Call<MeusAgendamentos>addAgend(@Header("Authorization")String key);
+    @PUT(MEUS_AGENDAMENTOS +"{id}/")
+    Call<Agendamento>deletarUserAgend(@Header("Authorization")String key,@Path("id")Long id,@Body Agendamento agendamento);
 
 
 

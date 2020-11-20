@@ -14,6 +14,7 @@ import com.projeto.R;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Aplicacao;
+import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class MeusAdapter extends BaseAdapter {
     @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Agendamento agendamento = agendamentos.get(position);
+        Agendamento agendamento = agendamentos.get(position) ;
         agendamento.setContext(context);
         Usuario usuarioLogado = Usuario.verificaUsuarioLogado();
 
@@ -80,7 +81,7 @@ public class MeusAdapter extends BaseAdapter {
             holder.meus_item_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Aplicacao.AlertarpraRemover(context);
+                   Aplicacao.AlertarpraRemover(context,agendamento);
 
 
                 }
@@ -93,7 +94,6 @@ public class MeusAdapter extends BaseAdapter {
         }
 
 
-        Agendamento agendamento = Agendamento.findById(Agendamento.class,agendamento.getAgendamento());
 
         holder.meus_lista_textview_nome.setText(agendamento.getNome_agendamento());
         holder.meus_lista_textview_data.setText(agendamento.getData());
