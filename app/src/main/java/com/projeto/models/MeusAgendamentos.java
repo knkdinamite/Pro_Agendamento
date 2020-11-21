@@ -21,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.projeto.models.Agendamento.confirmarAgendNaoEditado;
+import static com.projeto.statics.ConstantesGlobais.VAZIO;
 
 public class MeusAgendamentos extends SugarRecord {
 

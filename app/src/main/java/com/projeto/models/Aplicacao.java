@@ -87,13 +87,6 @@ public class Aplicacao {
     }
 
 
-    public static void irParaMeusActivity(Context context, Long id) {
-        Intent intent = new Intent(context, MeusActivity.class);
-        Bundle b = new Bundle();
-        b.putLong("id", id);
-        intent.putExtras(b);
-        context.startActivity(intent);
-    }
 
     public static void irParaMeusAgends(Context context) {
         Intent intent = new Intent(context, MeusActivity.class);

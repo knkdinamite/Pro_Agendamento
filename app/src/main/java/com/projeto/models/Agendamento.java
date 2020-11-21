@@ -168,6 +168,7 @@ public class Agendamento extends SugarRecord {
                     if (response.body() != null) {
                         Agendamento agendamentos = response.body();
                         agendamentos.save();
+                        Aplicacao.irParaMeusAgends(context);
 
 
 

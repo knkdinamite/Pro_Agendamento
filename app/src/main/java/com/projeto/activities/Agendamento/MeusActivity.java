@@ -16,6 +16,8 @@ import com.projeto.models.Aplicacao;
 import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
+import static com.projeto.statics.ConstantesGlobais.VAZIO;
+
 public class MeusActivity extends AppCompatActivity {
     ListView agend_lista_user;
     private AgendAdapter adaptador = null;
@@ -35,7 +37,9 @@ public class MeusActivity extends AppCompatActivity {
             MeusAgendamentos meusAgendamentos = new MeusAgendamentos(MeusActivity.this);
             meusAgendamentos.listarAgenduser(usuario, agend_lista_user);
 
+
         }
+
 
 
 

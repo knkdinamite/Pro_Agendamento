@@ -61,6 +61,11 @@ public class Usuario extends SugarRecord {
         this.email = email;
         this.context = context;
     }
+    public Usuario(String first_name,String email,String password){
+        this.first_name = first_name;
+        this.email = email;
+        this.password = password;
+    }
 
 
     public void salvaUsuarioNoBanco() {

@@ -21,8 +21,12 @@ import static org.junit.Assert.fail;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RetrofitCallTest {
 
-   // private static Usuario usuarioTeste = new Usuario("YSM@gmail.com","123456");
+   //private static Usuario usuarioTeste = new Usuario("Yan","YSM@gmail.com","123456");
     private static Usuario usuarioTeste = new Usuario("pedroh.mix@gmail.com","123456");
+   //private static Usuario usuarioTeste = new Usuario("Y1","yteste@gmail.com","123456");
+   // private static Usuario usuarioTeste = new Usuario("Y2","yteste@gmail.com","123456");
+   // private static Usuario usuarioTeste = new Usuario("Y3","yteste@gmail.com","123456");
+    // private static Usuario usuarioTeste = new Usuario("Y4","yteste@gmail.com","123456");
 
 
     @Test
