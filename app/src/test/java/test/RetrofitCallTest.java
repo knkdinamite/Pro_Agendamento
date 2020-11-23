@@ -27,7 +27,7 @@ public class RetrofitCallTest {
    // private static Usuario usuarioTeste = new Usuario("Y2","yteste@gmail.com","123456");
    // private static Usuario usuarioTeste = new Usuario("Y3","yteste@gmail.com","123456");
     // private static Usuario usuarioTeste = new Usuario("Y4","yteste@gmail.com","123456");
-
+    private static Agendamento agendamento = new Agendamento();
 
     @Test
     public void A_testeRegistro() {
@@ -54,7 +54,7 @@ public class RetrofitCallTest {
     }
 
     @Test
-    public void B_login_Success() {
+    public Usuario B_login_Success() {
 
         Call<Usuario> call = new RetrofitConfig().setUserService().logar(usuarioTeste);
 
@@ -66,6 +66,7 @@ public class RetrofitCallTest {
             if (response.isSuccessful()){
                 assertNotNull(usuario);
                 usuarioTeste.setKey(usuario.getKey());
+                return usuarioTeste;
             }else {
                 fail();
             }
@@ -75,7 +76,7 @@ public class RetrofitCallTest {
             fail();
             e.printStackTrace();
         }
-
+        return null;
     }
     @Test
     public void C_verificarUsuarioLogadoTest() {
@@ -125,28 +126,5 @@ public class RetrofitCallTest {
 
     }
 
-   /* public void E_listarAgendTest() {
 
-        Call<List<Agendamento>> call = new RetrofitConfig().setAgendService().listarAgendRemoto("Token b77c090e15eb16b3102204400de1401541264aac"+usuarioTeste.getKey());
-
-        try {
-            //Magic is here at .execute() instead of .enqueue()
-            Response<List<Agendamento>> response = call.execute();
-            List<Agendamento> agendamentos = response.body();
-
-            if (response.isSuccessful()){
-                assertNotNull(agendamentos);
-            }else {
-                fail();
-            }
-
-
-        } catch (IOException e) {
-            fail();
-            e.printStackTrace();
-        }
-
-    }
-
-    */
 }

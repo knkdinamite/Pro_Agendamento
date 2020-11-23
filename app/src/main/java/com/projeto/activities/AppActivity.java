@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.projeto.R;
 import com.projeto.models.Aplicacao;
@@ -21,6 +23,7 @@ public class AppActivity extends AppCompatActivity {
     private Usuario usuario;
     private ListView listaDeGrupos;
     private View aplicacao_view_tarefas,aplicacao_view_usuarios,view5 ;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +95,24 @@ public class AppActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public void onBackPressed() {
-       // Aplicacao.fecharApp(AppActivity.this);
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
-        super.onBackPressed();
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Clique voltar novamente, se realmente deseja sair", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
+
 }
