@@ -66,6 +66,7 @@ public class RetrofitCallTest {
             if (response.isSuccessful()){
                 assertNotNull(usuario);
                 usuarioTeste.setKey(usuario.getKey());
+
                 return usuarioTeste;
             }else {
                 fail();

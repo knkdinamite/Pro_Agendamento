@@ -4,7 +4,9 @@ import com.projeto.api.retrofit.RetrofitConfig;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Usuario;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +17,7 @@ import retrofit2.Response;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AgendamentoTest {
 
     //private static Usuario usuarioTeste = new Usuario("Yan","YSM@gmail.com","123456");
@@ -25,10 +28,6 @@ public class AgendamentoTest {
     // private static Usuario usuarioTeste = new Usuario("Y4","yteste@gmail.com","123456");
 
     private static Agendamento agendamento = new Agendamento();
-
-
-
-
 
     /*
     LoginActivityTest loginActivityTest = new LoginActivityTest();
@@ -70,6 +69,8 @@ public class AgendamentoTest {
     @Test
     public void B_editarAgendamento(){
 
+
+        agendamento.setUsuario(9L);
 
         Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
         try {
@@ -115,6 +116,8 @@ public class AgendamentoTest {
 
     @Test
     public void D_editMeuAgendamento(){
+
+        agendamento.setUsuario(null);
         Call<Agendamento> call = new RetrofitConfig().setAgendService().deletarUserAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
 
         try {
