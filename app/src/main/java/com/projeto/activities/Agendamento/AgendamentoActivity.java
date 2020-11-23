@@ -86,6 +86,12 @@ public class AgendamentoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Aplicacao.fecharApp(AgendamentoActivity.this);
+
+        super.onBackPressed();
+    }
 
     private void meus_agend() {
         Aplicacao.irParaMeusAgends(AgendamentoActivity.this);
