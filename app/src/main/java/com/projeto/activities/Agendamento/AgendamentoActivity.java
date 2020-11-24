@@ -17,6 +17,7 @@ import com.projeto.activities.Agendamento.MeusActivity;
 
 import java.util.List;
 
+
 public class AgendamentoActivity extends AppCompatActivity {
     ListView agend_lista_listview;
     private AgendAdapter adaptador = null;

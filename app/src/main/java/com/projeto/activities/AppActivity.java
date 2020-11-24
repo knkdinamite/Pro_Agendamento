@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.projeto.R;
+import com.projeto.activities.Agendamento.AgendamentoActivity;
 import com.projeto.models.Aplicacao;
 import com.projeto.models.Usuario;
 import com.projeto.observers.ActivityObserver;
@@ -29,6 +30,9 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aplicacao);
+
+        
+        
 
         usuario = Usuario.verificaUsuarioLogado();
         if (usuario != null) {
@@ -96,7 +100,7 @@ public class AppActivity extends AppCompatActivity {
 
 
 
-    @Override
+@Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
@@ -112,7 +116,9 @@ public class AppActivity extends AppCompatActivity {
             public void run() {
                 doubleBackToExitPressedOnce=false;
             }
-        }, 2000);
+
+            }, 2000);
+
+    }
     }
 
-}
