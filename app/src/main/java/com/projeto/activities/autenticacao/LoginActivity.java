@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.projeto.R;
+import com.projeto.activities.Agendamento.AgendamentoActivity;
 import com.projeto.models.Aplicacao;
 import com.projeto.models.Usuario;
 import com.projeto.observers.ActivityObserver;
@@ -136,6 +137,11 @@ public class LoginActivity extends AppCompatActivity {
         this.login_button_usuario.setEnabled(false);
     }
 
+    @Override
+    public void onBackPressed() {
+        Aplicacao.fecharApp(LoginActivity.this);
 
+        super.onBackPressed();
+    }
 
 }
