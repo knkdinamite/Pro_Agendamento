@@ -71,8 +71,8 @@ public class MeusActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Aplicacao.irParaAgendamentoActivity(MeusActivity.this);
-
+        //Aplicacao.irParaAgendamentoActivity(MeusActivity.this);
+        finish();
         super.onBackPressed();
     }
 

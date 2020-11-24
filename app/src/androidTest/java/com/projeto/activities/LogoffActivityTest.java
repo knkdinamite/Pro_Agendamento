@@ -40,7 +40,7 @@ public class LogoffActivityTest {
     @Test
     public void logoffActivityTest() {
         LoginActivityTest loginActivityTest = new LoginActivityTest();
-        loginActivityTest.loginActivityTest();
+        loginActivityTest.login2ActivityTest();
 
         ViewInteraction overflowMenuButton = onView(
                 allOf(withContentDescription("More options"),

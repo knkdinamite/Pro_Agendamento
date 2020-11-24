@@ -39,7 +39,7 @@ public class ListaAgendamentosActivityTest {
     @Test
     public void listaAgendamentosActivityTest() {
         LoginActivityTest loginActivityTest = new LoginActivityTest();
-        loginActivityTest.loginActivityTest();
+        loginActivityTest.login2ActivityTest();
 
         ViewInteraction view = onView(
                 allOf(withId(R.id.view5),

@@ -40,7 +40,7 @@ public class ListarActivityTest {
     @Test
     public void listarActivityTest() {
         LoginActivityTest loginActivityTest = new LoginActivityTest();
-        loginActivityTest.loginActivityTest();
+        loginActivityTest.login2ActivityTest();
 
         ViewInteraction view = onView(
                 allOf(withId(R.id.aplicacao_view_usuarios),

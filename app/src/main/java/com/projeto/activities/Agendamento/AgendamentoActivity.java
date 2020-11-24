@@ -89,7 +89,8 @@ public class AgendamentoActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Aplicacao.irParaAppActivity(AgendamentoActivity.this);
+       // Aplicacao.irParaAppActivity(AgendamentoActivity.this);
+        finish();
 
         super.onBackPressed();
     }
