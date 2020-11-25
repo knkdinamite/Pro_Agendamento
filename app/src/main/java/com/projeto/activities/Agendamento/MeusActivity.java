@@ -39,16 +39,10 @@ public class MeusActivity extends AppCompatActivity {
 
 
         }
-
-
-
-
-
+        
     }
 
-
-
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_agend2, menu);
@@ -68,6 +62,7 @@ public class MeusActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+     */
 
     @Override
     public void onBackPressed() {

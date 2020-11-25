@@ -102,6 +102,7 @@ public class AgendamentoActivity extends AppCompatActivity {
     private void voltar() {
 
         Aplicacao.irParaAppActivity(AgendamentoActivity.this);
+        finish();
     }
 
 }
