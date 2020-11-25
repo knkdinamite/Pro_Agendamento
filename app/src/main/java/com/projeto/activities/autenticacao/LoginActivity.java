@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.d("autenticação","  \nUSUARIO: "+ email + "\nSENHA:"+ senha);
 
-
+                finish();
             }
         });
 

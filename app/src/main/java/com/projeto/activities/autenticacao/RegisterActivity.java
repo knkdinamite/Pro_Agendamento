@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Usuario usuario = criarObjetoUsuarioPelosCampos();
                     usuario.registrar();
                 }
-
+                finish();
             }
         });
 
