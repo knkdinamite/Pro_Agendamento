@@ -72,7 +72,7 @@ public class AgendamentoTest {
 
         agendamento.setUsuario(9L);
 
-        Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().addUserAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
         try {
             Response<Agendamento> response = call.execute();
             Agendamento agendamentos = response.body();
@@ -118,7 +118,7 @@ public class AgendamentoTest {
     public void D_editMeuAgendamento(){
 
         agendamento.setUsuario(null);
-        Call<Agendamento> call = new RetrofitConfig().setAgendService().deletarUserAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().removerUserAgend("Token "+usuarioTeste.getKey(),agendamento.getId(),agendamento);
 
         try {
             Response<Agendamento> response = call.execute();

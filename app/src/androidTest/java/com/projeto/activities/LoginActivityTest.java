@@ -40,6 +40,8 @@ public class LoginActivityTest {
 
     @Test
     public void login2ActivityTest() {
+       // verificar se usuario esta logado
+
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.login_editText_email),
                         childAtPosition(

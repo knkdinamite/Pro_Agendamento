@@ -22,9 +22,11 @@ public interface AgendService {
 
 
     @PUT(AGENDAMENTOS +"{id}/")
-    Call<Agendamento> editarAgend(@Header("Authorization") String key, @Path("id") Long id, @Body Agendamento agendamento);
+    Call<Agendamento> addUserAgend(@Header("Authorization") String key, @Path("id") Long id, @Body Agendamento agendamento);
+
     @DELETE(AGENDAMENTOS +"{id}/")
     Call<Agendamento> deletarAgend(@Header("Authorization") String key, @Path("id") Long id);
+
     @GET(AGENDAMENTOS)
     Call<List<Agendamento>> listarAgendRemoto(@Header("Authorization") String s);
 
@@ -32,7 +34,7 @@ public interface AgendService {
     Call<List<Agendamento>>listarAgendporUser(@Header("Authorization")String u);
 
     @PUT(MEUS_AGENDAMENTOS +"{id}/")
-    Call<Agendamento>deletarUserAgend(@Header("Authorization")String key,@Path("id")Long id,@Body Agendamento agendamento);
+    Call<Agendamento>removerUserAgend(@Header("Authorization")String key,@Path("id")Long id,@Body Agendamento agendamento);
 
 
 

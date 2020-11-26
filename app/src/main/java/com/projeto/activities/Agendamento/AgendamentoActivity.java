@@ -49,6 +49,7 @@ public class AgendamentoActivity extends AppCompatActivity {
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
         List<Agendamento> agendamentos = Agendamento.listAll(Agendamento.class);
+        //e necessario filtrar os agendamentos que possuem user
         listarAgendamentos(agendamentos);
 
         if (usuario != null) {

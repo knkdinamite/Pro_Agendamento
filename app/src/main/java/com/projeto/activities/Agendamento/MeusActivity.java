@@ -32,10 +32,13 @@ public class MeusActivity extends AppCompatActivity {
         agend_lista_user = (ListView) findViewById(R.id.agend_lista_user);
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
+        // buscar lista de agendamentos no banco interno
+        //e necessario filtrar os agendamentos que nao possuem user
         if (usuario != null) {
             usuario.setContext(MeusActivity.this);
             MeusAgendamentos meusAgendamentos = new MeusAgendamentos(MeusActivity.this);
             meusAgendamentos.listarAgenduser(usuario, agend_lista_user);
+
 
 
         }

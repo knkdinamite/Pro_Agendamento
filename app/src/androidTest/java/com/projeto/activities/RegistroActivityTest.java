@@ -118,7 +118,7 @@ public class RegistroActivityTest {
                                 3),
                         isDisplayed()));
         appCompatEditText6.perform(pressImeActionButton());
-
+        Aplicacao.aguardar(5000);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.register_button_login), withText("REGISTRAR"),
                         childAtPosition(

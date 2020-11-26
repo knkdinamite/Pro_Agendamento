@@ -131,7 +131,7 @@ public class Agendamento extends SugarRecord {
 
 
     public void editarAgendamento(String key, Context context)  {
-        Call<Agendamento> call = new RetrofitConfig().setAgendService().editarAgend("Token "+key,this.getId(),this);
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().addUserAgend("Token "+key,this.getId(),this);
         call.enqueue(new Callback<Agendamento>() {
 
             @Override
@@ -160,7 +160,7 @@ public class Agendamento extends SugarRecord {
     }
 
     public void editMeusAgendamento(String key,Context context){
-        Call<Agendamento> call = new RetrofitConfig().setAgendService().deletarUserAgend("Token "+key,this.getId(),this);
+        Call<Agendamento> call = new RetrofitConfig().setAgendService().removerUserAgend("Token "+key,this.getId(),this);
         call.enqueue(new Callback<Agendamento>() {
             @Override
             public void onResponse(@NonNull Call<Agendamento> call, @NonNull Response<Agendamento> response) {
@@ -205,7 +205,10 @@ public class Agendamento extends SugarRecord {
             @Override
             public void onResponse(Call<List<Agendamento>> call, Response<List<Agendamento>> response) {
                 if (response.isSuccessful()) {
+                    // apagar a lista de agendamentos do banco interno
                     List<Agendamento> agendamentos = response.body();
+                    //salvar a lista no banco interno
+
                     Log.d("listarAgend", "listar");
 
                     AgendAdapter adaptador = new AgendAdapter(usuario.getContext(), agendamentos);

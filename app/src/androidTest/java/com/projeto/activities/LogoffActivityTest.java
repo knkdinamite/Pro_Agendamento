@@ -39,6 +39,8 @@ public class LogoffActivityTest {
 
     @Test
     public void logoffActivityTest() {
+
+
         LoginActivityTest loginActivityTest = new LoginActivityTest();
         loginActivityTest.login2ActivityTest();
 
