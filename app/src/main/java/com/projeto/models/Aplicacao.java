@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 
 import com.projeto.activities.Agendamento.AgendamentoActivity;
 import com.projeto.activities.Agendamento.MeusActivity;
@@ -15,12 +16,24 @@ import com.projeto.activities.tarefa.TarefaActivity;
 import com.projeto.activities.usuario.ListarUsuariosActivity;
 import com.projeto.activities.usuario.UsuarioDetalheActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
 import static com.projeto.statics.ConstantesGlobais.ADICIONAR;
 import static com.projeto.statics.ConstantesGlobais.REMOVER;
 
 
 public class Aplicacao {
 
+    private static FileOutputStream fos;
+    private static FileInputStream fis;
+    private static ObjectOutputStream out;
+    private static ObjectInputStream in;
 
     private Context context;
     private Class<?> activityDestino;
@@ -159,6 +172,42 @@ public class Aplicacao {
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(homeIntent);
+    }
+    public static void saveList(List<Agendamento> list) {
+        try {
+            File file = Environment.getExternalStorageDirectory();
+            File filename = new File(file, "Lista de Agendamentos");
+            fos = new FileOutputStream(filename);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(list);
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void readList()
+    {
+
+
+        try {
+            File file = Environment.getExternalStorageDirectory();
+            File filename = new File(file, "Lista de Agendamentos");
+            fis = new FileInputStream(filename);
+            in = new ObjectInputStream(fis);
+            List<Agendamento> list= (List<Agendamento>) in.readObject();
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    public static void deleteList(List<Agendamento> list) {
+        File file = Environment.getExternalStorageDirectory();
+        File filename = new File(file, "Lista de Agendamentos");
+        filename.delete();
     }
 
 }

@@ -16,6 +16,8 @@ import com.projeto.models.Aplicacao;
 import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
+import java.util.List;
+
 import static com.projeto.statics.ConstantesGlobais.VAZIO;
 
 public class MeusActivity extends AppCompatActivity {
@@ -33,6 +35,7 @@ public class MeusActivity extends AppCompatActivity {
 
         Usuario usuario = Usuario.verificaUsuarioLogado();
         // buscar lista de agendamentos no banco interno
+        
         //e necessario filtrar os agendamentos que nao possuem user
         if (usuario != null) {
             usuario.setContext(MeusActivity.this);

@@ -2,6 +2,7 @@ package com.projeto.models;
 
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,11 +19,20 @@ import com.projeto.api.retrofit.RetrofitConfig;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.System.in;
+import static java.lang.System.out;
 
 public class Agendamento extends SugarRecord {
 
@@ -32,6 +42,8 @@ public class Agendamento extends SugarRecord {
     private String horainicio;
     private String horafinal;
     private Long usuario;
+
+
 
 //public Agendamento(List<MeusAgendamentos> meusAgendamentos){}
 
@@ -207,6 +219,7 @@ public class Agendamento extends SugarRecord {
                 if (response.isSuccessful()) {
                     // apagar a lista de agendamentos do banco interno
                     List<Agendamento> agendamentos = response.body();
+                    Aplicacao.saveList(agendamentos);
                     //salvar a lista no banco interno
 
                     Log.d("listarAgend", "listar");
@@ -251,5 +264,7 @@ public class Agendamento extends SugarRecord {
 
     public void setUsuario() {
     }
+
+
 }
 
