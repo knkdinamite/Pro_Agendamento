@@ -13,9 +13,10 @@ import android.widget.TextView;
 import com.projeto.R;
 import com.projeto.models.Agendamento;
 import com.projeto.models.Aplicacao;
-import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AgendAdapter extends BaseAdapter {
@@ -25,6 +26,14 @@ public class AgendAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
     public AgendAdapter(Context context, List<Agendamento> agendamentos) {
+        Comparator<Agendamento> comparator = new Comparator<Agendamento>() {
+            @Override
+            public int compare(Agendamento left, Agendamento right) {
+                return (int) (left.getId() - right.getId()); // use your logic
+            }
+        };
+
+        Collections.sort(agendamentos, comparator); // use the comparator as much as u want
         this.agendamentos = agendamentos;
         this.context = context;
     }

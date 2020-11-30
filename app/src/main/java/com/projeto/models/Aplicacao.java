@@ -85,22 +85,19 @@ public class Aplicacao {
         intent.putExtras(b);
         context.startActivity(intent);
     }
+    public static void aguardar(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void irParaAgendamentoActivity(Context context) {
         Intent intent = new Intent(context, AgendamentoActivity.class);
         context.startActivity(intent);
 
-
-        //public static void fecharApp (Context context){
-           // Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-           // homeIntent.addCategory(Intent.CATEGORY_HOME);
-           // homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-           // context.startActivity(homeIntent);
-        //}
     }
-
-
-
     public static void irParaMeusAgends(Context context) {
         Intent intent = new Intent(context, MeusActivity.class);
         context.startActivity(intent);
@@ -130,14 +127,6 @@ public class Aplicacao {
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
-    }
-
-    public static void aguardar(int time){
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void AlertarpraRemover(Context context, Agendamento agendamento) {AlertDialog.Builder builder2 = new AlertDialog.Builder(context);

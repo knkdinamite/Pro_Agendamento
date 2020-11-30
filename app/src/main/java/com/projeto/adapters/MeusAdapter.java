@@ -17,6 +17,8 @@ import com.projeto.models.Aplicacao;
 import com.projeto.models.MeusAgendamentos;
 import com.projeto.models.Usuario;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MeusAdapter extends BaseAdapter {
@@ -26,6 +28,14 @@ public class MeusAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
     public MeusAdapter(Context context, List<Agendamento> agendamento) {
+        Comparator<Agendamento> comparator = new Comparator<Agendamento>() {
+            @Override
+            public int compare(Agendamento left, Agendamento right) {
+                return (int) (left.getId() - right.getId()); // use your logic
+            }
+        };
+
+        Collections.sort(agendamentos, comparator); // use the comparator as much as u want
         this.agendamentos = agendamento;
         this.context = context;
     }

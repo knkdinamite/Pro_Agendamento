@@ -219,7 +219,6 @@ public class Agendamento extends SugarRecord {
                 if (response.isSuccessful()) {
                     // apagar a lista de agendamentos do banco interno
                     List<Agendamento> agendamentos = response.body();
-                    Aplicacao.saveList(agendamentos);
                     //salvar a lista no banco interno
 
                     Log.d("listarAgend", "listar");
