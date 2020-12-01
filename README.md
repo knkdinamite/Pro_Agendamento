@@ -10,15 +10,15 @@ Professor: Pedro
 Membros do projeto:
 
   -Yuri<br />
-  -Marcelo
-  -Samuel
+  -Marcelo<br/>
+  -Samuel<br />
 
 ## instalação do projeto:
 
-  -Versão do Android Studio;
-  -Versão do emulador do Android;
-  -Utilização das bibliotecas: Sugar ORM, Retrofit;
-  -API;
+  -Versão do Android Studio;<br />
+  -Versão do emulador do Android;<br />
+  -Utilização das bibliotecas: Sugar ORM, Retrofit;<br />
+  -API;<br />
 
 
 
