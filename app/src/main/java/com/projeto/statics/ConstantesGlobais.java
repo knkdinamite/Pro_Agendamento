@@ -11,7 +11,4 @@ public class ConstantesGlobais {
     public static final String REMOVER = "Deseja remover esse agendamento?";
     public static final String VAZIO = "Opa, \nVoce não possui agendamentos";
 
-
-
-
 }
