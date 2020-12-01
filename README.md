@@ -9,7 +9,7 @@ Professor: Pedro
 
 Membros do projeto:
 
-  -Yuri
+  -Yuri<br />
   -Marcelo
   -Samuel
 
