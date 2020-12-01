@@ -15,14 +15,14 @@ Membros do projeto:
 
 ## instalação do projeto:
 
-  -Versão do Android Studio
+  + Item Versão do Android Studio
   -Versão do emulador do Android
   -Utilização das bibliotecas: Sugar ORM, Retrofit
   -API
 
 
 
-* No nosso projeto foi utilizado, o Android Studio na versão 4.0.2;
+    + Item No nosso projeto foi utilizado, o Android Studio na versão 4.0.2;
 
 * O emulador de android onde o defaultconfig (configurações do build.gradle) sejam minSdkkVersion 16(Android 4.1) e targetSdkVersion 30(Android 10);
 
