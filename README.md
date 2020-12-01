@@ -1,3 +1,5 @@
+=============
+Greupo 3
 # Studio_Agendamentos
 
 
@@ -39,3 +41,4 @@ A nossa ideia no projeto, foi de criar uma aplicação de agendamento, em que o 
 podendo selecionar vários agendamentos, do jeito que o programa foi feito, poderíamos utiliza-los em varias áreas diferentes.
 
 O App funciona de forma síncrona, pois o usuário deve seguir certos caminhos para obter um melhor aproveitamento do aplicativo (App).
+=============
