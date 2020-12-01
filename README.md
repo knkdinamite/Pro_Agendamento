@@ -42,3 +42,4 @@ podendo selecionar vários agendamentos, do jeito que o programa foi feito, pode
 
 O App funciona de forma síncrona, pois o usuário deve seguir certos caminhos para obter um melhor aproveitamento do aplicativo (App).
 
+<hr />
