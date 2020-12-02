@@ -1,5 +1,5 @@
 <hr />
-## Grupo 3<br />
+<h3> Grupo 3<br />
 <br/>
 
 # Studio_Agendamentos
