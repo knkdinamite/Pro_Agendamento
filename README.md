@@ -1,5 +1,5 @@
 <hr />
-Greupo 3<br />
+Grupo 3<br />
 <br/>
 
 # Studio_Agendamentos
