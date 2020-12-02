@@ -1,5 +1,5 @@
 <hr />
-Grupo 3<br />
+### Grupo 3<br />
 <br/>
 
 # Studio_Agendamentos
@@ -7,9 +7,9 @@ Grupo 3<br />
 
 Projeto Integrador da UC16 do Senac, Turma 721 do curso de Tecnico de informática.
 
-Professor: Pedro
+<b>Professor:</b> Pedro
 
-Membros do projeto:
+<b>Membros do projeto:</b>
 
   -Yuri<br />
   -Marcelo<br/>
